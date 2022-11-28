@@ -31,12 +31,12 @@ const Login = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control className='login-input' type="password" />
                         <Form.Text className="text-muted">
-                            <Card.Link href="http://nootnoot.net">forgot password?</Card.Link>
+                            <Card.Link className="link" href="http://nootnoot.net">forgot password?</Card.Link>
                         </Form.Text>
                     </Form.Group>
                     <Button type="submit" className="login-button">Login</Button>
                 </Form>
-                <Card.Text>Need an account? <Card.Link href="http://nootnoot.net">Register</Card.Link></Card.Text>
+                <Card.Text>Need an account? <Card.Link className="link" href="http://nootnoot.net">Register</Card.Link></Card.Text>
             </Card.Body>
         </Card>
         <span className="divider"/>

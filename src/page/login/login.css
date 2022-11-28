@@ -107,3 +107,8 @@
     align-items: center;
     max-width: 200px;
 }
+
+.link {
+    color: #7289DA;
+    text-decoration: none;
+}
