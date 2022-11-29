@@ -6,7 +6,9 @@ export const StyledSidebar = styled.div`
     position: fixed;
     overflow: scroll;
     background-color: #36393E;
-    webkit-scrollbar: none;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `
 
 export const StyledSidebarHeader = styled.header`
