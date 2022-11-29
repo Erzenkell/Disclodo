@@ -2,12 +2,12 @@ export const usersMock = [
     {
         "name": "John Doe",
         "id" : "1",
-        "icon": 'https://i.imgur.com/4Y7YQXH.png',
+        "icon": 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/c4/c4cb975dd5aca23a70d490a212a1efd40c2a7fc7.jpg',
     },
     {
         "name": "John DoeDoe",
         "id" : "2",
-        "icon": 'https://i.imgur.com/4Y7YQXH.png',
+        "icon": 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/f0/f05aee6684116a52bbd7c744bbd0a5af047e8cdc.jpg',
     },
     {
         "name": "John DoeDoeDoe",

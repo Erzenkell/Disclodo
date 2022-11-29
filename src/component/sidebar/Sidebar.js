@@ -1,29 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { StyledSidebar, StyledSidebarHeader, StyledSidebarContent } from './StyledSidebar';
 import Icon from '../icon/Icon';
 
 import './Sidebar.css'
 
-const Sidebar = (usersList) => {
+const Sidebar = ({handler, usersList}) => {
     return (
         <StyledSidebar>
             <StyledSidebarHeader>
                 <Icon/>
             </StyledSidebarHeader>
             <StyledSidebarContent className="sidebar-content">
-                {usersList.users.map((user) => {
+                {usersList?.map((user) => {
                     return (
-                        <Icon pfp={user.pfp}/>
+                        <Icon user={user} handler={handler}/>
                     )
                 })}
             </StyledSidebarContent>
         </StyledSidebar>
     )
-}
-
-Sidebar.propTypes = {
-    usersList: PropTypes.array
 }
 
 export default Sidebar;
