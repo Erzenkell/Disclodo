@@ -21,7 +21,7 @@ const Login = () => {
         <Card className='login-card-form'>
             <Card.Body>
                 <Card.Title className="login-card-title">Welcome back</Card.Title>
-                <Card.Subtitle className="login-card-subtitle">We're so exceited to see you again!</Card.Subtitle>
+                <Card.Subtitle className="login-card-subtitle">We're so excited to see you again!</Card.Subtitle>
                 <Form onSubmit={handleLogin} className="login-form">
                     <Form.Group className="login-form-group" controlId="username">
                         <Form.Label>Username</Form.Label>
@@ -34,9 +34,13 @@ const Login = () => {
                             <Card.Link className="link" href="http://nootnoot.net">forgot password?</Card.Link>
                         </Form.Text>
                     </Form.Group>
-                    <Button type="submit" className="login-button">Login</Button>
+                    <Form.Group className="login-form-group">
+                        <Button type="submit" className="login-button">Login</Button>
+                        <Form.Text>
+                            Need an account? <Card.Link className="link" href="http://nootnoot.net">Register</Card.Link>
+                        </Form.Text>
+                    </Form.Group>
                 </Form>
-                <Card.Text>Need an account? <Card.Link className="link" href="http://nootnoot.net">Register</Card.Link></Card.Text>
             </Card.Body>
         </Card>
         <span className="divider"/>
