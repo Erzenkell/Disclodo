@@ -9,7 +9,7 @@ const Sidebar = ({handler, usersList}) => {
     return (
         <StyledSidebar>
             <StyledSidebarHeader>
-                <Icon/>
+                <Icon handler={handler}/>
             </StyledSidebarHeader>
             <StyledSidebarContent className="sidebar-content">
                 {usersList?.map((user) => {

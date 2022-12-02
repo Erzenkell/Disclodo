@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyledHeader } from './StyledHeader';
 
-const Header = (user) => {
+const Header = ({user}) => {
     return (
         <StyledHeader>
-            <h1>Header</h1>
+            <h1>{user?.name}</h1>
         </StyledHeader>
     )
 }
