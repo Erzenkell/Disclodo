@@ -6,7 +6,7 @@ export const StyledChat = styled.input`
     border: none;
     border-radius: 5px;
     outline: none;
-    background-color: #36393E;
+    background-color: #40444A;
     color: white;
     font-size: 16px;
     padding: 20px;
@@ -14,4 +14,5 @@ export const StyledChat = styled.input`
     position: fixed;
     top: 92%;
     left: 11%;
+    z-index: 11;
 `

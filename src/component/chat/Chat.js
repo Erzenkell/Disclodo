@@ -31,6 +31,9 @@ const Chat = ({selectedUser, currentUser}) => {
                                 <StyledMessageIcon icon={message.sender?.icon} />
                                 <div className="message-send">
                                     {message.sender.name}
+                                    <div className='message-time'>
+                                        &nbsp;&nbsp;{message.time}
+                                    </div>
                                 </div>
                                 <div className="message-text">
                                     {message.content}

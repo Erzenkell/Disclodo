@@ -305,6 +305,7 @@ export const messageListMock = [
             id: '0',
             icon: 'https://i.pinimg.com/564x/28/8a/9a/288a9a3a41e2998cbea875661dee0c13.jpg',
         },
+        time: '01/03/2020 12:02',
         content: 'ouais ouais',
     },
     {
@@ -319,7 +320,8 @@ export const messageListMock = [
             id: '0',
             icon: 'https://i.pinimg.com/564x/28/8a/9a/288a9a3a41e2998cbea875661dee0c13.jpg',
         },
-        content: 'salut les cop1 ça va issou',
+        time: '01/02/2020 12:01',
+        content: 'really long text oué really long text oué really long text oué really long text oué really long text oué really long text oué really long text oué really long text oué really long text oué really long text oué really long text oué really long text oué really long text oué really long text oué really long text oué really long text oué really long text oué ',
     },
     {
         id: 4,
@@ -333,6 +335,7 @@ export const messageListMock = [
             id: '0',
             icon: 'https://i.pinimg.com/564x/28/8a/9a/288a9a3a41e2998cbea875661dee0c13.jpg',
         },
+        time: '01/01/2020 12:00',
         content: 'dernier message',
     },
 ]

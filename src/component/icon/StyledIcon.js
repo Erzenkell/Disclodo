@@ -4,7 +4,7 @@ export const StyledIcon = styled.div`
     height: 55px;
     width: 55px;
     border-radius: 50px;
-    background-color: #2F3136;
+    background-color: #36393E;
     background-image: url(${props => props.icon});
     background-size: cover;
     cursor: pointer;
@@ -18,5 +18,5 @@ export const StyledIconPopup = styled.div`
     margin-top: -50px;
     margin-left: 60px;
     padding: 10px;
-    background-color: #2F3136;
+    background-color: #202225;
 `

@@ -4,7 +4,7 @@ export const StyledSidebar = styled.div`
     width: 100px;
     height: 100%;
     overflow: scroll;
-    background-color: #36393E;
+    background-color: #2E3136;
     ::-webkit-scrollbar {
         display: none;
     }
@@ -15,7 +15,7 @@ export const StyledSidebar = styled.div`
 export const StyledSidebarHeader = styled.header`
     box-sizing: border-box;
     height: 90px;
-    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
