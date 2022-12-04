@@ -3,12 +3,12 @@ import styled from  'styled-components' ;
 export const StyledSidebar = styled.div`
     width: 100px;
     height: 100%;
-    position: fixed;
     overflow: scroll;
     background-color: #36393E;
     ::-webkit-scrollbar {
         display: none;
     }
+    position: fixed;
 `
 
 export const StyledSidebarHeader = styled.header`
@@ -25,5 +25,7 @@ export const StyledSidebarContent = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 20px;
+    position: absolute;
+    z-index: 6;
 `
 

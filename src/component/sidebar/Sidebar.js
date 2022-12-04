@@ -5,11 +5,11 @@ import Icon from '../icon/Icon';
 
 import './Sidebar.css'
 
-const Sidebar = ({handler, usersList}) => {
+const Sidebar = ({handler, usersList, currentUser}) => {
     return (
         <StyledSidebar>
             <StyledSidebarHeader>
-                <Icon handler={handler}/>
+                <Icon user={currentUser} handler={handler}/>
             </StyledSidebarHeader>
             <StyledSidebarContent className="sidebar-content">
                 {usersList?.map((user) => {

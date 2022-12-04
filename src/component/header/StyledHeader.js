@@ -11,4 +11,5 @@ export const StyledHeader = styled.header`
     background-color: #2F3136;
     width: 100%;
     left: 100px;
+    z-index: 1;
 `

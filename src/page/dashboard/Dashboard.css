@@ -1,5 +1,7 @@
 .dashboard {
     display: flex;
+    position: relative;
+    z-index: 5;
     flex-direction: column;
     height: 100vh;
     color: white;
