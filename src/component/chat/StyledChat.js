@@ -12,6 +12,6 @@ export const StyledChat = styled.input`
     padding: 20px;
     box-sizing: border-box;
     position: fixed;
-    top: 90%;
-    left: 10%;
+    top: 92%;
+    left: 11%;
 `

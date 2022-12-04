@@ -24,7 +24,7 @@ const Dashboard = () => {
         <div className='dashboard'>
             <Sidebar usersList={usersMock} handler={handleUserSelect} currentUser={currentUser}/>
             <Header user={selectedUser}/>
-            {selectedUser === currentUser ? <Profile user={currentUser}/> : <Chat user={selectedUser}/>}
+            {selectedUser === currentUser ? <Profile user={currentUser}/> : <Chat selectedUser={selectedUser} currentUser={currentUser}/>}
         </div>  
     )
 }

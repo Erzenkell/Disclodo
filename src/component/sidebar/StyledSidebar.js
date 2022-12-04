@@ -9,6 +9,7 @@ export const StyledSidebar = styled.div`
         display: none;
     }
     position: fixed;
+    z-index: 1;
 `
 
 export const StyledSidebarHeader = styled.header`
