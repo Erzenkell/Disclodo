@@ -1,10 +1,11 @@
 import React, {useState, useRef} from 'react'
-import { StyledIcon, StyledIconPopup } from './StyledIcon'
+import { StyledIcon, StyledIconPopup, StyledIndicator } from './StyledIcon'
 import PropTypes from 'prop-types';
 
 const Icon = ({handler, user}) => {
     const [popUp, setPopUp] = useState(false);
     const [popUpPosition, setPopUpPosition] = useState({x: 0, y: 0});
+    const [selected, setSelected] = useState(false);
 
     const myRef = useRef();
 
@@ -19,13 +20,20 @@ const Icon = ({handler, user}) => {
         <div className='icon'>
             <StyledIcon 
                 ref={myRef}
-                onMouseEnter={() => handleMouseEnter(myRef) }
+                onMouseEnter={() => handleMouseEnter() }
                 onMouseLeave={() => setPopUp(false)}
                 icon={user?.icon} 
-                onClick={() => handler(user)}
+                selected={selected}
+                onClick={() => {
+                    handler(user); 
+                    //setSelected(true); 
+                }}
             />
             {popUp && (
-                <StyledIconPopup popUpPosition={popUpPosition}>{user?.name}</StyledIconPopup>
+                <>
+                    <StyledIndicator/>
+                    <StyledIconPopup popUpPosition={popUpPosition}>{user?.name}</StyledIconPopup>
+                </>
             )}
         </div>
     )

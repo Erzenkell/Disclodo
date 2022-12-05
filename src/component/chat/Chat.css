@@ -12,6 +12,10 @@
     padding: 5px 10px;
 }
 
+.message:hover {
+    background-color: #32353A;
+}
+
 .message-content {
     display: flex;
     flex-direction: column;
