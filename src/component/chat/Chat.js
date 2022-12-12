@@ -1,25 +1,58 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { StyledChat } from './StyledChat';
 import { StyledMessageIcon } from './StyledMessageIcon';
 
 import './Chat.css'
 
-import { messageListMock } from '../../mocks/messages';
+const defaultIcon = "https://files.cults3d.com/uploaders/16080059/illustration-file/b5ee5801-0527-4e6f-9c16-95d0af5c61cd/Kirbo.png"
 
-const Chat = ({selectedUser, currentUser}) => {
-    const onEnterKeyPressed = (e, msg, user) => {
+const Chat = ({currentUser, currentChannel}) => {
+    const [messageList, setMessageList] = useState([]);
+
+    const onEnterKeyPressed = (e, msg, channel) => {
         if (e.key === 'Enter') {
-            console.log(`message send to ${user.name}: `, msg);
+            fetch('http://localhost:5678/api/Message', {
+                method: 'POST',
+                headers: {
+                    'accept': 'text/plain',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "content": msg,
+                    "authorId": currentUser.id,
+                    "channelId": channel.id
+                  })
+            })
+                 .then(document.getElementById("chatbar").value = "")
+                 .then(setMessageList([...messageList,
+                   {
+                    "content": msg,
+                    "authorId": currentUser.id,
+                    "channelId": channel.id,
+                    "createdAt": JSON.stringify(new Date())
+                    }])
+                 )
+                 .then(window.scrollTo(0, 0))
+                 .catch((err) => {
+                    console.log(err.message);
+                 });
         }
     }
 
-    const getMessageListForUser = (selectedUser, currentUser) => {
-        const messageListCallback = messageListMock // need to be replaced by a call to the API
-        const messageList = messageListCallback.reverse()
-        return messageList
-    }
-
-    const messageList = getMessageListForUser(selectedUser, currentUser);
+    useEffect(() => {
+        fetch(`http://localhost:5678/api/Message/${currentChannel?.id}`, {
+            method: 'GET',
+            headers: {
+                'accept': 'text/plain',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.json()) // parse JSON from request
+            .then(data => { setMessageList(data.reverse()); return })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, [currentChannel]);
 
     return (
         <div>
@@ -28,11 +61,11 @@ const Chat = ({selectedUser, currentUser}) => {
                     return (
                         <div className="message">
                             <div className="message-content">
-                                <StyledMessageIcon icon={message.sender?.icon} />
+                                <StyledMessageIcon icon={defaultIcon} />
                                 <div className="message-send">
-                                    {message.sender.name}
+                                    {message.authorId}
                                     <div className='message-time'>
-                                        &nbsp;&nbsp;{message.time}
+                                        &nbsp;&nbsp;{message.createdAt}
                                     </div>
                                 </div>
                                 <div className="message-text">
@@ -44,7 +77,7 @@ const Chat = ({selectedUser, currentUser}) => {
                 })}
             </div>
             <div className='footer'>
-                <StyledChat placeholder={`Send a message to @${selectedUser?.name}`} onKeyDown={e => onEnterKeyPressed(e, e.target.value, selectedUser)}/>
+                <StyledChat id="chatbar" placeholder={`Send a message to @${currentChannel?.name}`} onKeyDown={e => onEnterKeyPressed(e, e.target.value, currentChannel)}/>
             </div>
         </div>
     )

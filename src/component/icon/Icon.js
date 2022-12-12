@@ -2,7 +2,9 @@ import React, {useState, useRef} from 'react'
 import { StyledIcon, StyledIconPopup, StyledIndicator } from './StyledIcon'
 import PropTypes from 'prop-types';
 
-const Icon = ({handler, user}) => {
+const defaultIcon = "https://files.cults3d.com/uploaders/16080059/illustration-file/b5ee5801-0527-4e6f-9c16-95d0af5c61cd/Kirbo.png"
+
+const Icon = ({handler, channel}) => {
     const [popUp, setPopUp] = useState(false);
     const [popUpPosition, setPopUpPosition] = useState({x: 0, y: 0});
     const [selected, setSelected] = useState(false);
@@ -22,17 +24,17 @@ const Icon = ({handler, user}) => {
                 ref={myRef}
                 onMouseEnter={() => handleMouseEnter() }
                 onMouseLeave={() => setPopUp(false)}
-                icon={user?.icon} 
+                icon={channel?.icon ? channel?.icon : defaultIcon} 
                 selected={selected}
                 onClick={() => {
-                    handler(user); 
+                    handler(channel); 
                     //setSelected(true); 
                 }}
             />
             {popUp && (
                 <>
                     <StyledIndicator/>
-                    <StyledIconPopup popUpPosition={popUpPosition}>{user?.name}</StyledIconPopup>
+                    {channel.name ? <StyledIconPopup popUpPosition={popUpPosition}>{channel?.name}</StyledIconPopup> : null}
                 </>
             )}
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import "./login.css";
+import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Button from 'react-bootstrap/Button';
@@ -8,10 +9,26 @@ import Form from 'react-bootstrap/Form';
 import loginBackground from '../../assets/login-background.png';
 import QRcode from '../../assets/tmp-qr-code.png';
 
-const Login = () => {
+const Login = ({setToken}) => {
     const handleLogin = (e) => {
         e.preventDefault();
-        console.log("Login button clicked");
+        fetch('http://localhost:5678/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'accept': 'text/plain',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "username": e.target[0].value,
+                "password": e.target[1].value
+              })
+        })
+             .then(response => response.text())
+             .then(data => setToken(data))
+             .then(() => window.location.href = "/")
+             .catch((err) => {
+                console.log(err.message);
+             });
     }
 
     return (
@@ -35,9 +52,11 @@ const Login = () => {
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="login-form-group">
-                        <Button type="submit" className="login-button">Login</Button>
+                        <Button type="submit" className="login-button" >
+                            <Link className='signup-button'>Login</Link>
+                        </Button>
                         <Form.Text>
-                            Need an account? <Card.Link className="link" href="http://nootnoot.net">Register</Card.Link>
+                            Need an account? <Card.Link className="link" href="/signup">Register</Card.Link>
                         </Form.Text>
                     </Form.Group>
                 </Form>
