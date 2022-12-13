@@ -1,0 +1,46 @@
+# Docker compose with .NET6, run dotnet publish and run the app
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgpassword
+      POSTGRES_DB: pgdb
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pguser -d pgdb"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
+    ports:
+      - 5432:5432
+
+  api:
+    image: mcr.microsoft.com/dotnet/sdk:6.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5678:5678
+      - 5679:5679
+    environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Myprivatekeypassword123
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=./certificate.pfx
+
+    depends_on:
+      - db
+
+  caddy:
+    image: dunglas/mercure
+    restart: unless-stopped
+    environment:
+      # Uncomment the following line to disable HTTPS
+      SERVER_NAME: ':80'
+      MERCURE_PUBLISHER_JWT_KEY: 'blablabalblalofpaziofa'
+      MERCURE_SUBSCRIBER_JWT_KEY: 'blablabalblalofpaziofa'
+    # Uncomment the following line to enable the development mode
+    command: /usr/bin/caddy run -config /etc/caddy/Caddyfile.dev
+    ports:
+      - "1234:80"
+      - "443:443"
