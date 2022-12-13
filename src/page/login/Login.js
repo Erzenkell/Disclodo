@@ -24,7 +24,7 @@ const Login = ({setToken}) => {
               })
         })
              .then(response => response.text())
-             .then(data => setToken(data))
+             .then(data => data !== "User not found" ? setToken(data) : null)
              .then(() => window.location.href = "/")
              .catch((err) => {
                 console.log(err.message);

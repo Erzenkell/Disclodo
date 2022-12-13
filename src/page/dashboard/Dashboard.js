@@ -15,7 +15,6 @@ const Dashboard = ({getToken}) => {
     }
 
     const token = getToken();
-    console.log(token)
     const currentUser = decodeToken(token);
 
     const [selectedChannel, setSelectedChannel] = useState(currentUser);

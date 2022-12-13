@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyledChat } from './StyledChat';
+import { StyledChat, StyledRemoveMessageButton } from './StyledChat';
 import { StyledMessageIcon } from './StyledMessageIcon';
 
 import './Chat.css'
@@ -27,7 +27,7 @@ const Chat = ({currentUser, currentChannel}) => {
                  .then(setMessageList([...messageList,
                    {
                     "content": msg,
-                    "authorId": currentUser.id,
+                    "author": currentUser.username,
                     "channelId": channel.id,
                     "createdAt": JSON.stringify(new Date())
                     }])
@@ -54,6 +54,23 @@ const Chat = ({currentUser, currentChannel}) => {
             });
     }, [currentChannel]);
 
+    const handleRemoveMessage = (message) => {
+        fetch(`http://localhost:5678/api/Message/${message.id}`, {
+            method: 'DELETE',
+            headers: {
+                'accept': 'text/plain',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.text())
+            .then(setMessageList(messageList.filter((cmessage) => cmessage.id !== message.id)))
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }
+
+    console.log(messageList)
+
     return (
         <div>
             <div className='message-list'>
@@ -63,7 +80,7 @@ const Chat = ({currentUser, currentChannel}) => {
                             <div className="message-content">
                                 <StyledMessageIcon icon={defaultIcon} />
                                 <div className="message-send">
-                                    {message.authorId}
+                                    {message.author}
                                     <div className='message-time'>
                                         &nbsp;&nbsp;{message.createdAt}
                                     </div>
@@ -71,6 +88,7 @@ const Chat = ({currentUser, currentChannel}) => {
                                 <div className="message-text">
                                     {message.content}
                                 </div>
+                                <StyledRemoveMessageButton onClick={() => handleRemoveMessage(message)}/>
                             </div>
                         </div>
                     )
